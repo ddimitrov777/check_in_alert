@@ -1,4 +1,6 @@
 class FlightsController < ApplicationController
+  before_action :current_user_must_be_flight_user, only: [:edit, :update, :destroy] 
+
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   # GET /flights
@@ -57,6 +59,14 @@ class FlightsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_flight_user
+    set_flight
+    unless current_user == @flight.user
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_flight
       @flight = Flight.find(params[:id])

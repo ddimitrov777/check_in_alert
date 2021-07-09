@@ -34,16 +34,20 @@
 
       <!-- Edit link flight start -->
       <div class="col">
-        <%= link_to edit_flight_url(flight), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @flight.user %>
+          <%= link_to edit_flight_url(flight), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link flight end -->
 
       <!-- Delete link flight start -->
       <div class="col">
-        <%= link_to flight, method: :delete, data: { confirm: "Do you really want to delete this flight?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @flight.user %>
+          <%= link_to flight, method: :delete, data: { confirm: "Do you really want to delete this flight?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link flight end -->
