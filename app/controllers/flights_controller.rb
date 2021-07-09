@@ -42,8 +42,14 @@ class FlightsController < ApplicationController
   # DELETE /flights/1
   def destroy
     @flight.destroy
-    redirect_to flights_url, notice: 'Flight was successfully destroyed.'
+    message = "Flight was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to flights_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
