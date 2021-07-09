@@ -1,0 +1,31 @@
+<% was_validated = user.errors.any? %>
+
+<%= form_with(model: user, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for phone_number start -->
+  <div class="form-group">
+    <% phone_number_class = "form-control" %>
+    <% phone_number_was_invalid = user.errors.include?(:phone_number) %>
+
+    <% if was_validated %>
+      <% if phone_number_was_invalid %>
+        <% phone_number_class << " is-invalid" %>
+      <% else %>
+        <% phone_number_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :phone_number %>
+    <!-- Input for phone_number start -->
+    <%= f.text_field :phone_number, class: phone_number_class, placeholder: "Enter phone number" %>
+    <!-- Input for phone_number end -->
+    <% if phone_number_was_invalid %>
+      <% user.errors.full_messages_for(:phone_number).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for phone_number end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
