@@ -5,6 +5,8 @@ class Flight < ApplicationRecord
 
   # Validations
 
+  validates :departs_at, :presence => true
+
   # Scopes
 
   def to_s
