@@ -5,7 +5,7 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    @flights = Flight.all
+    @flights = current_user.flights.page(params[:page]).per(10)
   end
 
   # GET /flights/1
