@@ -12,5 +12,4 @@ class FlightResource < ApplicationResource
   belongs_to :user
 
   # Indirect associations
-
 end

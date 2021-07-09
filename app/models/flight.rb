@@ -7,12 +7,11 @@ class Flight < ApplicationRecord
 
   # Validations
 
-  validates :departs_at, :presence => true
+  validates :departs_at, presence: true
 
   # Scopes
 
   def to_s
     user.to_s
   end
-
 end

@@ -13,7 +13,7 @@ class Api::V1::FlightsController < Api::V1::GraphitiController
     flight = FlightResource.build(params)
 
     if flight.save
-      render jsonapi: flight, status: 201
+      render jsonapi: flight, status: :created
     else
       render jsonapi_errors: flight
     end
@@ -33,7 +33,7 @@ class Api::V1::FlightsController < Api::V1::GraphitiController
     flight = FlightResource.find(params)
 
     if flight.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: flight
     end
