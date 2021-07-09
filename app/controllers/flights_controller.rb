@@ -5,7 +5,8 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    @flights = current_user.flights.page(params[:page]).per(10)
+    @q = current_user.flights.ransack(params[:q])
+    @flights = @q.result(:distinct => true).includes(:user).page(params[:page]).per(10)
   end
 
   # GET /flights/1
