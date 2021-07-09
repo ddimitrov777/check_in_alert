@@ -1,0 +1,108 @@
+<% was_validated = flight.errors.any? %>
+
+<%= form_with(model: flight, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for user_id start -->
+  <div class="form-group">
+    <% user_class = "form-control" %>
+    <% user_was_invalid = flight.errors.include?(:user) %>
+
+    <% if was_validated %>
+      <% if user_was_invalid %>
+        <% user_class << " is-invalid" %>
+      <% else %>
+        <% user_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :user_id %>
+    <!-- Input for user_id start -->
+    <%= f.number_field :user_id, class: user_class, placeholder: "Enter user" %>
+    <!-- Input for user_id end -->
+    <% if user_was_invalid %>
+      <% flight.errors.full_messages_for(:user).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for user_id end -->
+  <!-- Label and input for departs_at start -->
+  <div class="form-group">
+    <% departs_at_class = "form-control" %>
+    <% departs_at_was_invalid = flight.errors.include?(:departs_at) %>
+
+    <% if was_validated %>
+      <% if departs_at_was_invalid %>
+        <% departs_at_class << " is-invalid" %>
+      <% else %>
+        <% departs_at_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :departs_at %>
+    <!-- Input for departs_at start -->
+    <%= f.datetime_select :departs_at, class: departs_at_class, placeholder: "Enter departs at" %>
+    <!-- Input for departs_at end -->
+    <% if departs_at_was_invalid %>
+      <% flight.errors.full_messages_for(:departs_at).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for departs_at end -->
+  <!-- Label and input for description start -->
+  <div class="form-group">
+    <% description_class = "form-control" %>
+    <% description_was_invalid = flight.errors.include?(:description) %>
+
+    <% if was_validated %>
+      <% if description_was_invalid %>
+        <% description_class << " is-invalid" %>
+      <% else %>
+        <% description_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :description %>
+    <!-- Input for description start -->
+    <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
+    <!-- Input for description end -->
+    <% if description_was_invalid %>
+      <% flight.errors.full_messages_for(:description).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for description end -->
+  <!-- Label and input for alert_sent start -->
+  <div class="form-check">
+    <% alert_sent_class = "form-check-input" %>
+    <% alert_sent_was_invalid = flight.errors.include?(:alert_sent) %>
+
+    <% if was_validated %>
+      <% if alert_sent_was_invalid %>
+        <% alert_sent_class << " is-invalid" %>
+      <% else %>
+        <% alert_sent_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :alert_sent, class: "form-check-label" do %>
+      <%= f.check_box :alert_sent, class: alert_sent_class %> Alert sent
+    <% end %>
+    <% if alert_sent_was_invalid %>
+      <% flight.errors.full_messages_for(:alert_sent).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for alert_sent end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
