@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   # Validations
 
+  validates :phone_number, :uniqueness => true
+
   validates :phone_number, :presence => true
 
   # Scopes
