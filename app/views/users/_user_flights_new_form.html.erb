@@ -1,0 +1,39 @@
+<!-- Form flight start -->
+<%= form_with(model: @flight, local: true) do |f| %>
+<!-- Form flight end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for departs_at start -->
+  <div class="form-group">
+    <%= f.label :departs_at %>
+    <!-- Input for departs_at start -->
+    <%= f.text_field :departs_at, class: "form-control" %>
+    <!-- Input for departs_at end -->
+  </div>
+  <!-- Label and input for departs_at end -->
+
+  <!-- Label and input for description start -->
+  <div class="form-group">
+    <%= f.label :description %>
+    <!-- Input for description start -->
+    <%= f.text_field :description, class: "form-control" %>
+    <!-- Input for description end -->
+  </div>
+  <!-- Label and input for description end -->
+
+  <!-- Label and input for alert_sent start -->
+  <div class="form-check">
+    <!-- Input for alert_sent start -->
+    <%= f.check_box :alert_sent, class: "form-check-input" %>
+    <!-- Input for alert_sent end -->
+    <%= f.label :alert_sent, class: "form-check-label" %>
+  </div>
+  <!-- Label and input for alert_sent end -->
+
+  <%= f.submit "Create flight", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

@@ -24,7 +24,12 @@ class FlightsController < ApplicationController
     @flight = Flight.new(flight_params)
 
     if @flight.save
-      redirect_to @flight, notice: 'Flight was successfully created.'
+      message = 'Flight was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @flight, notice: message
+      end
     else
       render :new
     end
