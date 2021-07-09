@@ -1,12 +1,7 @@
 <% was_validated = flight.errors.any? %>
 
 <%= form_with(model: flight, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for departs_at start -->
   <div class="form-group">
     <% departs_at_class = "form-control" %>
     <% departs_at_was_invalid = flight.errors.include?(:departs_at) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :departs_at %>
-    <!-- Input for departs_at start -->
     <%= f.datetime_select :departs_at, class: departs_at_class, placeholder: "Enter departs at" %>
-    <!-- Input for departs_at end -->
     <% if departs_at_was_invalid %>
       <% flight.errors.full_messages_for(:departs_at).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,8 +24,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for departs_at end -->
-  <!-- Label and input for description start -->
   <div class="form-group">
     <% description_class = "form-control" %>
     <% description_was_invalid = flight.errors.include?(:description) %>
@@ -46,9 +37,7 @@
     <% end %>
 
     <%= f.label :description %>
-    <!-- Input for description start -->
     <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
-    <!-- Input for description end -->
     <% if description_was_invalid %>
       <% flight.errors.full_messages_for(:description).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -57,8 +46,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for description end -->
-  <!-- Label and input for alert_sent start -->
   <div class="form-check">
     <% alert_sent_class = "form-check-input" %>
     <% alert_sent_was_invalid = flight.errors.include?(:alert_sent) %>
@@ -82,6 +69,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for alert_sent end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
